@@ -2,12 +2,46 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="description" content="" />
-		<link rel="icon" href="%svelte.assets%/favicon.png" />
+		<link rel="icon" href="/favicon.png" />
+		<link
+			rel="preload"
+			href="/fonts/NunitoSans-ExtraBold.ttf"
+			as="font"
+			crossorigin />
+		<link
+			rel="preload"
+			href="/fonts/NunitoSans-Light.ttf"
+			as="font"
+			crossorigin />
+		<link
+			rel="preload"
+			href="/fonts/NunitoSans-SemiBold.ttf"
+			as="font"
+			crossorigin />
+		<style>
+			@font-face {
+				font-family: NunitoSans;
+				font-display: swap;
+				font-weight: 300;
+				src: url('fonts/NunitoSans-Light.ttf');
+			}
+			@font-face {
+				font-family: NunitoSans;
+				font-display: swap;
+				font-weight: 600;
+				src: url('fonts/NunitoSans-SemiBold.ttf');
+			}
+			@font-face {
+				font-family: NunitoSans;
+				font-display: swap;
+				font-weight: 800;
+				src: url('fonts/NunitoSans-ExtraBold.ttf');
+			}
+		</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
 	</head>
-	<body>
-		<div>%svelte.body%</div>
+	<body class="transition">
+		%svelte.body%
 	</body>
 </html>
