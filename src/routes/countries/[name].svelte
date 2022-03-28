@@ -13,9 +13,19 @@
 </script>
 
 <script>
+	import { browser } from '$app/env';
+	import countries from '../../stores/countries';
+
 	import { fade } from 'svelte/transition';
 	export let countryData;
 	let countryName = countryData.name.common;
+
+	function getCountryByCode(code) {
+		if (browser) {
+			const targetCountry = $countries.filter((c) => c.cca3 === code)[0];
+			return targetCountry.name.common.toLowerCase();
+		}
+	}
 </script>
 
 <svelte:head>
@@ -79,12 +89,13 @@
 				</div>
 			</div>
 			{#if countryData.borders}
-				<div class="flex flex-row mt-18 items-center">
-					<h2 class="font-bold mr-4">Border countries:</h2>
+				<div class="flex flex-row flex-wrap mt-18 gap-2 items-center">
+					<h2 class="font-bold">Border countries:</h2>
 					{#each countryData.borders as b}
-						<span
+						<a
+							href="/countries/{getCountryByCode(b)}"
 							class="bg-$bg-color rounded-sm font-light shadow shadow-md mr-2 text-sm py-1 px-6"
-							>{b}</span>
+							>{b}</a>
 					{/each}
 				</div>
 			{/if}
